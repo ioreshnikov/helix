@@ -91,18 +91,18 @@ local theme = lush(function()
     DiffChange   { fg = hsl("#6f44f0") }, -- Diff mode: Changed line |diff.txt|
     DiffDelete   { fg = hsl("#f22c86") }, -- Diff mode: Deleted line |diff.txt|
     -- DiffText     { }, -- Diff mode: Changed text within a changed line |diff.txt|
-    -- EndOfBuffer  { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    EndOfBuffer  { fg = bossanova }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
     ErrorMsg     { fg = apricot }, -- Error messages on the command line
-    VertSplit    { fg = comet }, -- Column separating vertically split windows
+    -- VertSplit    { fg = comet }, -- Column separating vertically split windows
     -- Folded       { }, -- Line used for closed folds
     -- FoldColumn   { }, -- 'foldcolumn'
-    SignColumn   { fg = comet }, -- Column where |signs| are displayed
+    -- SignColumn   { LineNr }, -- Column where |signs| are displayed
     -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- Substitute   { }, -- |:substitute| replacement text highlighting
-    LineNr       { fg = comet }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { fg = lilac }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    -- LineNr       { fg = comet }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    -- CursorLineNr { fg = lilac }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- MatchParen   { }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea      { }, -- Area for messages and cmdline
@@ -111,6 +111,7 @@ local theme = lush(function()
     -- NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal       { fg = lavender, bg = midnight }, -- Normal text
     NormalFloat  { bg = bossanova }, -- Normal text in floating windows.
+    NormalSB     { Normal },
     -- NormalNC     { }, -- normal text in non-current windows
     Pmenu        { fg = lavender, bg = revolver }, -- Popup menu: Normal item.
     PmenuSel     { fg = revolver, bg = white }, -- Popup menu: Selected item.
@@ -295,6 +296,41 @@ local theme = lush(function()
     -- TSTypeBuiltin        { } , -- Built-in types: `i32` in Rust.
     -- TSVariable           { } , -- Variable names that don't fit into other categories.
     TSVariableBuiltin    { fg = mint } , -- Variable names defined by the language: `this` or `self` in Javascript.
+
+    -- Those are my own opinionated overrides
+    LineNr { bg = CursorLine.bg },
+    CursorLineNr { fg = lilac, bg = LineNr.bg },
+    SignColumn { LineNr },
+    VertSplit { fg = LineNr.bg, bg = LineNr.bg },
+
+    -- Lualine faces
+    LualineANormal { fg = almond, bg = StatusLine.bg },
+    LualineBNormal { StatusLine },
+    LualineCNormal { StatusLineNC },
+    LualineAInsert { fg = almond, bg = StatusLineNC.bg, gui = "reverse" },
+    LualineBInsert { StatusLine },
+    LualineCInsert { StatusLineNC },
+    LualineAVisual { fg = Visual.bg, bg = white, gui = "reverse" },
+    LualineBVisual { StatusLine },
+    LualineCVisual { StatusLineNC },
+    LualineAReplace { fg = lightning, bg = StatusLineNC.bg, gui = "reverse" },
+    LualineBReplace { StatusLine },
+    LualineCReplace { StatusLineNC },
+    LualineACommand { fg = apricot, bg = StatusLineNC.bg, gui = "reverse" },
+    LualineBCommand { StatusLine },
+    LualineCCommand { StatusLineNC },
+    LualineAInactive { StatusLineNC },
+    LualineBInactive { StatusLineNC },
+    LualineCInactive { StatusLineNC },
+
+    -- Indent guides
+    IndentBlanklineChar { fg = comet },
+
+    -- Telescope
+    TelescopeNormal { bg = StatusLineNC.bg },
+    TelescopeBorder { TelescopeNormal },
+    TelescopePromptPrefix { fg = almond },
+    TelescopeTitle { fg = honey, bg = revolver, gui = "reverse" },
   }
 end)
 
