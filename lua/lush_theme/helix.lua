@@ -79,7 +79,7 @@ local theme = lush(function()
     --
     -- See :h highlight-groups
     --
-    ColorColumn  { bg = revolver }, -- Columns set with 'colorcolumn'
+    ColorColumn  { bg = bossanova }, -- Columns set with 'colorcolumn'
     -- Conceal      { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor       { gui = "reverse" }, -- Character under the cursor
     -- lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
