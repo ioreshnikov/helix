@@ -98,7 +98,7 @@ local theme = lush(function()
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
     ErrorMsg     { fg = apricot }, -- Error messages on the command line
     -- VertSplit    { fg = comet }, -- Column separating vertically split windows
-    -- Folded       { }, -- Line used for closed folds
+    Folded       { fg = lilac, bg = bossanova, gui = "underline" }, -- Line used for closed folds
     -- FoldColumn   { }, -- 'foldcolumn'
     -- SignColumn   { LineNr }, -- Column where |signs| are displayed
     -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
