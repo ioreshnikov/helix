@@ -64,6 +64,8 @@ local apricot = hsl("#f47868")
 local lightning = hsl("#ffcd1c")
 local delta = hsl("#6F44F0")
 
+local visual = hsl("#540099")
+
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
 ---@diagnostic disable: undefined-global
@@ -86,11 +88,11 @@ local theme = lush(function()
     -- CursorIM     { }, -- Like Cursor, but used when in IME mode |CursorIM|
     CursorColumn { bg = bossanova }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     CursorLine   { bg = bossanova }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    -- Directory    { }, -- Directory names (and other special names in listings)
+    Directory    { fg = lilac }, -- Directory names (and other special names in listings)
     DiffAdd      { fg = hsl("#35bf86") }, -- Diff mode: Added line |diff.txt|
     DiffChange   { fg = hsl("#6f44f0") }, -- Diff mode: Changed line |diff.txt|
     DiffDelete   { fg = hsl("#f22c86") }, -- Diff mode: Deleted line |diff.txt|
-    -- DiffText     { }, -- Diff mode: Changed text within a changed line |diff.txt|
+    DiffText     { DiffChange }, -- Diff mode: Changed text within a changed line |diff.txt|
     EndOfBuffer  { fg = bossanova }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
@@ -131,7 +133,7 @@ local theme = lush(function()
     TabLineFill  { StatusLineNC }, -- Tab pages line, where there are no labels
     TabLineSel   { Normal }, -- Tab pages line, active tab page label
     Title        { fg = almond }, -- Titles for output from ":set all", ":autocmd" etc.
-    Visual       { bg = hsl("#540099") }, -- Visual mode selection
+    Visual       { bg = visual }, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg   { fg = lightning }, -- Warning messages
     -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -297,7 +299,7 @@ local theme = lush(function()
     -- TSVariable           { } , -- Variable names that don't fit into other categories.
     TSVariableBuiltin    { fg = mint } , -- Variable names defined by the language: `this` or `self` in Javascript.
 
-    -- Those are my own opinionated overrides
+    -- Opinionated overrides and plugins
     LineNr { bg = CursorLine.bg },
     CursorLineNr { fg = lilac, bg = LineNr.bg },
     SignColumn { LineNr },
@@ -323,14 +325,33 @@ local theme = lush(function()
     LualineBInactive { StatusLineNC },
     LualineCInactive { StatusLineNC },
 
+    -- Neotree
+    NeoTreeNormal { bg = revolver },
+    NeoTreeNormalNC { bg = revolver },
+    NeoTreeStatusLine { fg = NeoTreeNormal.bg, bg = NeoTreeNormal.bg },
+    NeoTreeStatusLineNC { fg = NeoTreeNormal.bg, bg = NeoTreeNormal.bg },
+    NeoTreeEndOfBuffer { fg = NeoTreeNormal.bg },
+    NeoTreeMessage { fg = delta, gui = "italic" },
+    NeoTreeDotfile { fg = delta },
+    NeoTreeCursorLine { bg = midnight },
+    NeoTreeIndentMarker { fg = visual },
+
     -- Indent guides
-    IndentBlanklineChar { fg = comet },
+    -- IndentBlanklineChar { fg = comet },
+    IndentBlanklineChar { fg = visual },
 
     -- Telescope
     TelescopeNormal { bg = StatusLineNC.bg },
     TelescopeBorder { TelescopeNormal },
     TelescopePromptPrefix { fg = almond },
-    TelescopeTitle { fg = honey, bg = revolver, gui = "reverse" },
+    TelescopeTitle { fg = almond, bg = revolver, gui = "reverse" },
+    TelescopeSelection { bg = midnight },
+    TelescopePromptCounter { fg = lavender },
+    TelescopeResultsTitle { fg = TelescopeBorder.bg },
+    TelescopePreviewTitle { fg = TelescopeBorder.bg },
+
+    -- Which key
+    WhichKeyFloat { bg = StatusLineNC.bg },
   }
 end)
 
