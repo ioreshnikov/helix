@@ -19,3 +19,4 @@ package.loaded['lush_theme.helix'] = nil
 -- include our theme file and pass it to lush to apply
 require('lush')(require('lush_theme.helix'))
 
+-- vim.api.nvim_command('autocmd TermOpen * setlocal winhighlight=Normal:NormalFloat,SignColumn:SignColumnSB')
