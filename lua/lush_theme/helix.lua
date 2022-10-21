@@ -129,8 +129,8 @@ local theme = lush(function()
     -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
     StatusLine   { fg = lilac, bg = revolver }, -- Status line of current window
     StatusLineNC { fg = lavender, bg = revolver }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine      { StatusLineNC }, -- Tab pages line, not active tab page label
-    TabLineFill  { StatusLineNC }, -- Tab pages line, where there are no labels
+    TabLine      { fg = lavender, bg = revolver }, -- Tab pages line, not active tab page label
+    TabLineFill  { fg = lavender, bg = revolver }, -- Tab pages line, where there are no labels
     TabLineSel   { Normal }, -- Tab pages line, active tab page label
     Title        { fg = almond }, -- Titles for output from ":set all", ":autocmd" etc.
     Visual       { bg = visual }, -- Visual mode selection
